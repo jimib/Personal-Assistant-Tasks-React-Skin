@@ -58,10 +58,10 @@ task( `Add Action-Type` )
 	
 				return Promise.mapSeries([
 					//this is optional - ignore errors
-					() => assistant.template( `${DIR_CLIENT}/constants/ActionTypes.js`, '../templates/ActionsConstants.js', options ).catch( err => null ),
+					() => assistant.template( `${DIR_CLIENT}/constants/ActionConstants.js`, '../templates/ActionsConstants.js', options ).catch( err => null ),
 					//continue as you were
 					() => {
-						return assistant.render( '../templates/ActionTypeConstant.js', options )
+						return assistant.render( '../templates/ActionConstantsItem.js', options )
 						.then( code => {
 							console.log('Add code', code);
 							return assistant.append( `${DIR_CLIENT}/constants/ActionTypes.js`, code ) 
