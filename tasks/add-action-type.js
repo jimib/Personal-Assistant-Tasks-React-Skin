@@ -56,11 +56,11 @@ task( `Add Action-Type` )
 				
 				return Promise.mapSeries([
 					//this is optional - ignore errors
-					() => assistant.template( `${DIR_CLIENT}/constants/ActionConstants.js`, '../templates/ActionsConstants.js', options ).catch( err => null ),
+					() => assistant.template( `${DIR_CLIENT}/constants/ActionsConstants.js`, '../templates/ActionsConstants.js', options ).catch( err => null ),
 					//continue as you were
 					() => {
-						return assistant.render( '../templates/ActionConstantsItem.js', options )
-						.then( code => assistant.append( `${DIR_CLIENT}/constants/ActionConstants.js`, code ));
+						return assistant.render( '../templates/ActionsConstantsItem.js', options )
+						.then( code => assistant.append( `${DIR_CLIENT}/constants/ActionsConstants.js`, code ));
 					},
 					() => assistant.insertCodeBlock( `${DIR_CLIENT}/actions/${id}Actions.js`, 'IMPORT_ACTION_TYPE', `\t${NAME},` ),
 					() => {
