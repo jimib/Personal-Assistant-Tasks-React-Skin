@@ -62,10 +62,7 @@ task( `Add Action-Type` )
 					//continue as you were
 					() => {
 						return assistant.render( '../templates/ActionConstantsItem.js', options )
-						.then( code => {
-							console.log('Add code', code);
-							return assistant.append( `${DIR_CLIENT}/constants/ActionTypes.js`, code ) 
-						})
+						.then( code => assistant.append( `${DIR_CLIENT}/constants/ActionConstants.js`, code ));
 					},
 					() => assistant.insertCodeBlock( `${DIR_CLIENT}/actions/${id}Actions.js`, 'IMPORT_ACTION_TYPE', `\t${NAME},` ),
 					() => {
