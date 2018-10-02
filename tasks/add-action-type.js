@@ -57,7 +57,9 @@ task( `Add Action-Type` )
 				console.log( 'Add ActionType', options );
 	
 				return Promise.mapSeries([
-					() => assistant.template( `${DIR_CLIENT}/constants/ActionTypes.js`, '../templates/ActionTypes.js', options ),
+					//this is optional - ignore errors
+					() => assistant.template( `${DIR_CLIENT}/constants/ActionTypes.js`, '../templates/ActionTypes.js', options ).catch( err => null ),
+					//continue as you were
 					() => {
 						return assistant.render( '../templates/ActionTypeConstant.js', options )
 						.then( code => {
