@@ -4,6 +4,7 @@ const Promise = require('bluebird');
 
 const ACTION = 'action';
 const REDUCER = 'reducer';
+const DIR_CLIENT = './client';
 
 task( `Add Action/Reducer` )
 .then( (assistant, options = {}) => {
@@ -30,12 +31,12 @@ task( `Add Action/Reducer` )
 		const {name,includes} = options;
 		//do something about this
 		return Promise.mapSeries( _.filter([
-			() => assistant.template( `./tests/example/reducers/index.js`, '../templates/Reducers.js', options ).catch( err => null ),
-			() => assistant.insertCodeBlock( `./tests/example/reducers/index.js`, 'REDUCER_IMPORT', `import ${name.toLowerCase()} from './${name}Reducer.js'` ),
-			() => assistant.insertCodeBlock( `./tests/example/reducers/index.js`, 'REDUCER_EXPORT', `${name.toLowerCase()},` ),
-			_.includes( includes, ACTION ) ? () => assistant.template( `./tests/example/actions/${name}Actions.js`, '../templates/BasicActions.js', options ) : null,
-			_.includes( includes, REDUCER ) ? () => assistant.template( `./tests/example/reducers/${name}Reducer.js`, '../templates/BasicReducer.js', options ) : null,
-			_.includes( includes, REDUCER ) ? () => assistant.editCodeBlock( `./tests/example/reducers/${name}Reducer.js`, 'INIT_STATE', {language:'javascript'} ) : null
+			() => assistant.template( `${DIR_CLIENT}/reducers/index.js`, '../templates/Reducers.js', options ).catch( err => null ),
+			() => assistant.insertCodeBlock( `${DIR_CLIENT}/reducers/index.js`, 'REDUCER_IMPORT', `import ${name.toLowerCase()} from './${name}Reducer.js'` ),
+			() => assistant.insertCodeBlock( `${DIR_CLIENT}/reducers/index.js`, 'REDUCER_EXPORT', `${name.toLowerCase()},` ),
+			_.includes( includes, ACTION ) ? () => assistant.template( `${DIR_CLIENT}/actions/${name}Actions.js`, '../templates/BasicActions.js', options ) : null,
+			_.includes( includes, REDUCER ) ? () => assistant.template( `${DIR_CLIENT}/reducers/${name}Reducer.js`, '../templates/BasicReducer.js', options ) : null,
+			_.includes( includes, REDUCER ) ? () => assistant.editCodeBlock( `${DIR_CLIENT}/reducers/${name}Reducer.js`, 'INIT_STATE', {language:'javascript'} ) : null
 		]), handler => handler() )
 		.then( () => {
 			return {tasks:{type:'react',options:{name}}};

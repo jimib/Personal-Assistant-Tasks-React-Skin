@@ -2,12 +2,12 @@ const fs = require('fs-extra-promise');
 const _ = require('lodash');
 const Promise = require('bluebird');
 
-
+const DIR_CLIENT = './client';
 
 task( `Add Action-Type` )
 .then( (assistant, options = {}) => {
 	console.log('Add Action Type');
-	return assistant.list('./tests/example/actions',{extensions:['.js']})
+	return assistant.list('${DIR_CLIENT}/actions',{extensions:['.js']})
 	.then( results => {
 		const regexpActionId = /([a-zA-Z0-9]+)Action[s]?.js+/;
 		const items = _.filter( _.map( results, name => {
@@ -57,27 +57,27 @@ task( `Add Action-Type` )
 				console.log( 'Add ActionType', options );
 	
 				return Promise.mapSeries([
-					() => assistant.template( `./tests/example/constants/ActionTypes.js`, '../templates/ActionTypes.js', options ),
+					() => assistant.template( `${DIR_CLIENT}/constants/ActionTypes.js`, '../templates/ActionTypes.js', options ),
 					() => {
 						return assistant.render( '../templates/ActionTypeConstant.js', options )
 						.then( code => {
 							console.log('Add code', code);
-							return assistant.append( `./tests/example/constants/ActionTypes.js`, code ) 
+							return assistant.append( `${DIR_CLIENT}/constants/ActionTypes.js`, code ) 
 						})
 					},
-					() => assistant.insertCodeBlock( `./tests/example/actions/${name}Actions.js`, 'IMPORT_ACTION_TYPE', `\t${NAME},\n` ),
+					() => assistant.insertCodeBlock( `${DIR_CLIENT}/actions/${name}Actions.js`, 'IMPORT_ACTION_TYPE', `\t${NAME},\n` ),
 					() => {
 						return assistant.render( '../templates/BasicActionFunc.js', options )
-						.then( code => assistant.insertCodeBlock( `./tests/example/actions/${name}Actions.js`, 'ACTION', code ) )
+						.then( code => assistant.insertCodeBlock( `${DIR_CLIENT}/actions/${name}Actions.js`, 'ACTION', code ) )
 					},
-					() => assistant.insertCodeBlock( `./tests/example/reducers/${name}Reducer.js`, 'IMPORT_ACTION_TYPE', `\t${NAME},\n` ),
+					() => assistant.insertCodeBlock( `${DIR_CLIENT}/reducers/${name}Reducer.js`, 'IMPORT_ACTION_TYPE', `\t${NAME},\n` ),
 					() => {
 						return assistant.render( '../templates/BasicReducerFunc.js', options )
-						.then( code => assistant.insertCodeBlock( `./tests/example/reducers/${name}Reducer.js`, 'REDUCER', code ) )
+						.then( code => assistant.insertCodeBlock( `${DIR_CLIENT}/reducers/${name}Reducer.js`, 'REDUCER', code ) )
 					}
 				], handler => handler() );
 				// inject the variable
-				//_.includes( includes, ACTION ) ? () => assistant.template( `./tests/example/actions/${name}Actions.js`, '../templates/BasicActions.js', options ) : null,
+				//_.includes( includes, ACTION ) ? () => assistant.template( `${DIR_CLIENT}/actions/${name}Actions.js`, '../templates/BasicActions.js', options ) : null,
 				
 			});
 		}
