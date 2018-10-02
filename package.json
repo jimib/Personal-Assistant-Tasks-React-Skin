@@ -1,6 +1,6 @@
 {
   "name": "@jimib/pa-tasks-react",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Tasks for React supported by Personal-Assistant",
   "main": "index.js",
   "license": "MIT",
