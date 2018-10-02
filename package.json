@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "postinstall": "node ./scripts/postinstall.js",
-    "preuninstall": "node ./scripts/preuninstall.js"
+    "preuninstall": "node ./scripts/preuninstall.js",
+    "release": "node scripts/release.js"
   },
   "devDependencies": {
     "child-process-promise": "^2.2.1"
