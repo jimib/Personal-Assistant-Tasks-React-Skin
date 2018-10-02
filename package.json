@@ -1,0 +1,22 @@
+{
+  "name": "@jimib/pa-tasks-react",
+  "version": "1.0.0",
+  "description": "Tasks for React supported by Personal-Assistant",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "postinstall": "node ./scripts/postinstall.js",
+    "preuninstall": "node ./scripts/preuninstall.js"
+  },
+  "dependencies": {
+    "app-root-path": "^2.1.0",
+    "bluebird": "^3.5.2",
+    "fs-extra-promise": "^1.0.1",
+    "lodash": "^4.17.11"
+  },
+  "assistant" : {
+    "options" : {
+      "type" : "react"
+    }
+  }
+}

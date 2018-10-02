@@ -1,0 +1,3 @@
+const {{nameCamelCased}} = () => ({
+	type : {{NAME}}
+})
