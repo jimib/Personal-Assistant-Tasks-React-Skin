@@ -33,7 +33,7 @@ task( `Add Action/Reducer` )
 		return Promise.mapSeries( _.filter([
 			() => assistant.template( `${DIR_CLIENT}/reducers/index.js`, '../templates/Reducers.js', options ).catch( err => null ),
 			() => assistant.insertCodeBlock( `${DIR_CLIENT}/reducers/index.js`, 'REDUCER_IMPORT', `import ${name.toLowerCase()} from './${name}Reducer.js'` ),
-			() => assistant.insertCodeBlock( `${DIR_CLIENT}/reducers/index.js`, 'REDUCER_EXPORT', `${name.toLowerCase()},` ),
+			() => assistant.insertCodeBlock( `${DIR_CLIENT}/reducers/index.js`, 'REDUCER_EXPORT', `\t${name.toLowerCase()},\n` ),
 			_.includes( includes, ACTION ) ? () => assistant.template( `${DIR_CLIENT}/actions/${name}Actions.js`, '../templates/BasicActions.js', options ) : null,
 			_.includes( includes, REDUCER ) ? () => assistant.template( `${DIR_CLIENT}/reducers/${name}Reducer.js`, '../templates/BasicReducer.js', options ) : null,
 			_.includes( includes, REDUCER ) ? () => assistant.editCodeBlock( `${DIR_CLIENT}/reducers/${name}Reducer.js`, 'INIT_STATE', {language:'javascript'} ) : null
