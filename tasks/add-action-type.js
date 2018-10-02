@@ -7,7 +7,7 @@ const DIR_CLIENT = './client';
 task( `Add Action-Type` )
 .then( (assistant, options = {}) => {
 	console.log('Add Action Type');
-	return assistant.list('${DIR_CLIENT}/actions',{extensions:['.js']})
+	return assistant.list(`${DIR_CLIENT}/actions`,{extensions:['.js']})
 	.then( results => {
 		const regexpActionId = /([a-zA-Z0-9]+)Action[s]?.js+/;
 		const items = _.filter( _.map( results, name => {

@@ -15,7 +15,6 @@ const INITIAL_STATE = {
 /*END:INIT_STATE*/
 
 const reducer = CreateReducer(INITIAL_STATE, {
-	
 	/*INJECT:REDUCER*/
 });
 
