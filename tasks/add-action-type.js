@@ -67,12 +67,12 @@ task( `Add Action-Type` )
 							return assistant.append( `${DIR_CLIENT}/constants/ActionTypes.js`, code ) 
 						})
 					},
-					() => assistant.insertCodeBlock( `${DIR_CLIENT}/actions/${id}Actions.js`, 'IMPORT_ACTION_TYPE', `\t${NAME},\n` ),
+					() => assistant.insertCodeBlock( `${DIR_CLIENT}/actions/${id}Actions.js`, 'IMPORT_ACTION_TYPE', `\t${NAME},` ),
 					() => {
 						return assistant.render( '../templates/BasicActionFunc.js', options )
 						.then( code => assistant.insertCodeBlock( `${DIR_CLIENT}/actions/${id}Actions.js`, 'ACTION', code ) )
 					},
-					() => assistant.insertCodeBlock( `${DIR_CLIENT}/reducers/${id}Reducer.js`, 'IMPORT_ACTION_TYPE', `\t${NAME},\n` ),
+					() => assistant.insertCodeBlock( `${DIR_CLIENT}/reducers/${id}Reducer.js`, 'IMPORT_ACTION_TYPE', `\t${NAME},` ),
 					() => {
 						return assistant.render( '../templates/BasicReducerFunc.js', options )
 						.then( code => assistant.insertCodeBlock( `${DIR_CLIENT}/reducers/${id}Reducer.js`, 'REDUCER', code ) )
