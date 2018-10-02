@@ -1,9 +1,11 @@
 const path = require('path');
 const fs = require('fs-extra-promise');
 const util = require('util');
+const _ = require('lodash');
 //add it to the projects package
-const dirRoot = require('app-root-path');
+const dirRoot = path.resolve( __dirname, '..', '..', '..', '..');
 const dirModule = path.resolve( __dirname, '..' );
+
 const pathToModuleTasks = path.relative( dirRoot, path.resolve( dirModule, 'tasks' ) );
 
 const pckModule = require( path.resolve( dirModule, 'package.json' ) );
@@ -11,7 +13,7 @@ const pckModule = require( path.resolve( dirModule, 'package.json' ) );
 if( dirRoot != dirModule ){
 	const pathToPackage = path.resolve( dirRoot, 'package.json' );
 	
-	fs.existsSync( pathToPackage )
+	fs.existsAsync( pathToPackage )
 	.then( exists => {
 		if( !exists ){
 			console.error(`Unable to install '${pckModule.name}' as no package.json in root`);
