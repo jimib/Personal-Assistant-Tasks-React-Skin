@@ -20,7 +20,7 @@ if( dirRoot != dirModule ){
 			.then( pckRoot => {
 				//make sure the required props exists
 				pckRoot.assistant = pckRoot.assistant || {};
-				pckRoot.assistant.tasks = util.isArray( pckRoot.assistant.tasks ) ? pckRoot.assistant.tasks || [];
+				pckRoot.assistant.tasks = util.isArray( pckRoot.assistant.tasks ) ? pckRoot.assistant.tasks : [];
 				//add the path to our module tasks
 				if( _.includes( pckRoot.assistant.tasks, pathToModuleTasks ) == false ){
 					pckRoot.assistant.tasks.push( pathToModuleTasks );
