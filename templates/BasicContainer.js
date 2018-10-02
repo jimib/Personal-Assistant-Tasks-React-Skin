@@ -10,9 +10,15 @@ const mapStateToProps = state => ({
 
 //START:MAP_DISPATCH
 const mapDispatchToProps = dispatch => ({
-	//onInit : ( ) => {
-	//	return dispatch( loadItems() )
-	//}
+	//onMount : ( ) => {
+	//	console.log('onMount');
+	//},
+	//onUnmount : ( ) => {
+	//	console.log('onUnmount');
+	//},
+	//onItemSelect : ( item ) => {
+	//	console.log('onItem');
+	//},
 });
 //END:MAP_DISPATCH
 

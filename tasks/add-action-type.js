@@ -6,7 +6,6 @@ const DIR_CLIENT = './client';
 
 task( `Add Action-Type` )
 .then( (assistant, options = {}) => {
-	console.log('Add Action Type');
 	return assistant.list(`${DIR_CLIENT}/actions`,{extensions:['.js']})
 	.then( results => {
 		const regexpActionId = /([a-zA-Z0-9]+)Action[s]?.js+/;
@@ -54,8 +53,7 @@ task( `Add Action-Type` )
 				const nameCamelCased = _.camelCase( NAME );
 	
 				const options = {id,name,NAME,nameCamelCased};
-				console.log( 'Add ActionType', options );
-	
+				
 				return Promise.mapSeries([
 					//this is optional - ignore errors
 					() => assistant.template( `${DIR_CLIENT}/constants/ActionConstants.js`, '../templates/ActionsConstants.js', options ).catch( err => null ),
