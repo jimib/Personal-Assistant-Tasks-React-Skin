@@ -35,9 +35,14 @@ class {{name}}Component extends PixelComponent{
 	 */
 	/*START:RENDER*/
 	render(props){
-		var {className,data} = this.props;
+		var {className,data,items} = this.props;
 		return (<div className={ClassNames(Styles.container,className)}>
+			{/*FOR DATA*/}
 			{JSON.stringify(data)}
+			{/*FOR ITEMS*/}
+			{_.map(items, (item,index) => {
+				return <li>{JSON.stringify(item);}</li>;
+			})}
 		</div>)
 	}
 	/*END:RENDER*/
