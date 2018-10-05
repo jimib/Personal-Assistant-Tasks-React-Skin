@@ -1,3 +1,0 @@
-const {{nameCamelCased}} = () => ({
-	type : {{NAME}}
-})

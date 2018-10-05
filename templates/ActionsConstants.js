@@ -1,7 +1,0 @@
-export const ERROR_SHOW = 'ERROR_SHOW';
-export const ERROR_HIDE = 'ERROR_HIDE';
-
-export const SESSION_STARTED = 'SESSION_STARTED';
-export const SESSION_ENDED = 'SESSION_ENDED';
-export const SESSION_UPDATED = 'SESSION_UPDATED';
-
